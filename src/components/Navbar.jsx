@@ -5,11 +5,12 @@ import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import logo from "../img/logo.png"
 
+
 function OffcanvasExample() {
   return (
     <>
-      <Navbar expand={"sm"} className="bg-body-tertiary mb-3 fixed-top">
-        <Container fluid>
+      <Navbar expand={"sm"} className="bg-body-tertiary p-0 fixed-top navbar">
+        <Container fluid style={{backgroundColor:"#F2F5F7"}}>
           <Navbar.Brand href="#home">
             <img
               src={logo}

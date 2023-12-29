@@ -4,6 +4,9 @@
     box-sizing: border-box;
 }
 
+body{
+    background-color: #F2F5F7;
+}
 
 
 /* FOOTER */
@@ -17,4 +20,67 @@
 .col-2{
     display: flex;
     justify-content: center;
+}
+
+/* TABLE */
+.tableDiv{
+    position: relative;
+    top: 83px;
+    height: 1000px;
+}
+.tableDiv .left{
+    width: 872px;
+    position: absolute;
+    left: 151px;
+}
+table{
+    margin-top: 20px;
+    height: 550px;
+}
+
+td{
+    padding: 10px !important;
+}
+td p{
+    margin: 0px
+}
+#tdLogo{
+    padding-left: 20px !important;
+    width: 76px;
+}
+#tdStop{
+    text-align: end;
+}
+#tdPrice{
+    text-align: end;
+    padding-right: 25px !important;
+}
+
+.table-title{
+    width: 764px;
+    font-size: 48px;
+    line-height: 56.25px;
+}
+
+
+/* #RIGHT */
+.right{
+    position: absolute;
+    top: 108px;
+    left: 1059px;
+    text-align: right;
+    
+}
+
+.rightBox{
+    background-color: white;
+    width: 238px;
+    height: 235px;
+    padding: 20px;
+}
+.rightBox p{
+    color: blue;
+}
+.rightPrices{
+    padding: 20px;
 }

@@ -6,6 +6,7 @@ import facebook from "../img/Facebook.png";
 import Nav from "react-bootstrap/Nav";
 
 
+
 // function Footer() {
 //   return (
 //     <Container classNameName="fixed-bottom border-bottom mb-4 pb-2 ">
@@ -49,8 +50,8 @@ import Nav from "react-bootstrap/Nav";
 
 function Footer() {
   return (
-      <Container className="text-center text-md-start fixed-bottom text-muted border-bottom mb-4">
-        <Row>
+      <Container fluid className="text-center text-md-start fixed-bottom text-muted bg-white">
+        <Row className="border-bottom mb-4">
           <Col className="col-md-5 col-lg-4 col-xl-3 ms-5">
             <img src={logo} alt="logo" />
             <p>
@@ -84,3 +85,4 @@ function Footer() {
   );
 }
 export default Footer;
+
