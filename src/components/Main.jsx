@@ -10,7 +10,8 @@ export const Main = () => {
         <h5 className="table-description">
           Select a tour that suits you below.
         </h5>
-        <table className="table table-hover">
+        <div className="bg-white rounded ">
+          <table className="table table-hover">
           <tbody>
             {data.map((item, index) => {
               return (
@@ -44,9 +45,11 @@ export const Main = () => {
             })}
           </tbody>
         </table>
+        </div>
+        
       </section>
       <section className="right">
-        <div className="rightBox">
+        <div className="rightBox rounded">
           <p>
             <img src={flylogo} alt="flyLogo" />
           </p>

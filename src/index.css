@@ -10,6 +10,10 @@ body{
 
 
 /* FOOTER */
+a{
+    text-decoration: none;
+    color: black;
+}
 .col_1{
     margin-left: 80px;
 }
@@ -21,12 +25,50 @@ body{
     display: flex;
     justify-content: center;
 }
+footer .d-flex{
+    padding-left: 7rem;
+}
+footer section{
+  margin: 1rem;
+  width: 200px;
+}
+
+.sec1{
+    flex-grow: 3;
+    
+}
+.sec1 p{
+    max-width: 360px;
+    padding-left: 1rem;
+    font-size: 14px;
+    line-height: 21px;
+}
+.sec1 .social{
+    padding-left: 1rem;
+}
+.sec2{
+    flex-grow: 1;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.sec3{
+    flex-grow: 7;   
+    padding-top: 1rem;
+}
+.sec2 h5{
+  padding-right: 25px;
+}
+
 
 /* TABLE */
 .tableDiv{
     position: relative;
     top: 83px;
-    height: 1000px;
+    height: 900px;
+    margin-bottom: 234px;
 }
 .tableDiv .left{
     width: 872px;
@@ -37,7 +79,12 @@ table{
     margin-top: 20px;
     height: 550px;
 }
-
+.rounded{
+    padding: 3px 14px;
+}
+tr:last-child{
+    border-bottom: 1px solid white;
+}
 td{
     padding: 10px !important;
 }
@@ -66,7 +113,7 @@ td p{
 /* #RIGHT */
 .right{
     position: absolute;
-    top: 108px;
+    top: 95px;
     left: 1059px;
     text-align: right;
     
