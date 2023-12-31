@@ -6,10 +6,17 @@
 
 body{
     background-color: #F2F5F7;
+    height: 1440px;
+    position: relative;
 }
 
 
 /*!##### FOOTER #####*/
+footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
 
 footer .d-flex{
     padding-left: 7rem;
@@ -75,9 +82,25 @@ table{
 .rounded{
     padding: 3px 14px;
 }
+
+.left .rounded{
+    margin-top: 45px;
+}
+.right .rounded{
+    margin-top: 38px;
+}
+.left .formDiv{
+    margin-top: 75px;
+}
+
 tr:last-child{
     border-bottom: 1px solid white;
 }
+
+tr:hover{
+    cursor: pointer;
+}
+
 td{
     padding: 10px !important;
 }
@@ -123,4 +146,56 @@ td p{
 }
 .rightPrices{
     padding: 20px;
+}
+
+
+/*!##### BOOKING PAGE ##### */
+
+
+.bookingDiv {
+    position: relative;
+    top: 83px;
+    height: 80vh;
+    margin-bottom: 100px;
+}
+
+.bookingDiv .left {
+    width: 568px;
+    position: absolute;
+    left: 151px;
+}
+
+/*!##### FORM #####*/
+
+
+.input{
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+/*? inputIcon */
+.input span{
+    position: absolute;
+    top: 13px;
+    right: 15px;
+}
+
+.airplane{
+    position: absolute;
+    top: 500px;
+    left: -545px;
+    animation: moveRight 4s ease-out forwards;
+    z-index: -2;
+
+}
+
+@keyframes moveRight {
+    0% {
+        left: -545px;
+    }
+
+    100% {
+        left: 1050px;
+        transform: translateX(-50%);
+    }
 }
