@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { createContext, useState } from "react";
 import flylogo from "../img/flylogo.png";
 import airplane from "../img/airplane.png"
 import { Formik, Form } from "formik";
@@ -6,12 +6,13 @@ import * as Yup from "yup";
 import {
   Box,
   Button,
-  IconButton,
-  InputAdornment,
   TextField,
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import axios from "axios";
+import { useLocation, useNavigate } from "react-router-dom";
+import { duration, formatTime, stopDuration } from "./Main";
 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -41,7 +42,31 @@ const BookingPage = () => {
   const handleClickShowAddress = () =>
     setShowAddress((showAddress) => !showAddress);
 
-  const rightSection = true;
+   const url = "http://127.0.0.1:8000/passenger/";
+
+   const navigate = useNavigate()
+
+   const MyContext = createContext()
+
+   const booking =async(passengerInfo)=>{
+    try {
+      const {data} = await axios.post(url, passengerInfo)
+      console.log(data);
+      navigate("/success")
+    } catch (error) {
+      console.log(error);
+      navigate("/error")
+    }
+   }
+
+   const location = useLocation()
+   const selectedFly = location.state
+
+   console.log(selectedFly);
+
+   const reservation=async()=>{
+        
+   }
 
   return (
     <div className="bookingDiv">
@@ -58,7 +83,7 @@ const BookingPage = () => {
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
               console.log(values);
-              //register(values);
+              booking(values);
               actions.resetForm();
             }}
           >
@@ -159,7 +184,7 @@ const BookingPage = () => {
                       {showAddress ? <VisibilityIcon /> : <VisibilityOffIcon />}
                     </span>
                   </div>
-                  <Button className="bg-primary text-white w-100">
+                  <Button type="submit" variant="contained" size="large">
                     Submit
                   </Button>
                 </Box>
@@ -174,26 +199,40 @@ const BookingPage = () => {
             <p>
               <img src={flylogo} alt="flyLogo" />
             </p>
-            <strong>Hallo</strong>
-            <p>Hallo</p>
-            <strong>"durationTime"</strong>
-            <strong style={{ display: "inline-block" }}>
-              "d_time and a_time"
+            <strong>{selectedFly[0].airline}</strong>
+            <p>{selectedFly[0].flight_number}</p>
+            <strong>
+              {duration(
+                selectedFly[0].arrival_time,
+                selectedFly[0].departure_time
+              )}
             </strong>
-            <p>Hallo</p>
+            <strong style={{ display: "block" }}>
+              {formatTime(selectedFly[0].departure_time)} -
+              {formatTime(selectedFly[0].arrival_time)}
+            </strong>
+            <p>
+              {selectedFly[0].stopAmount
+                ? stopDuration(selectedFly[0].stopDuration) +
+                  " in " +
+                  selectedFly[0].stopPlace
+                : ""}
+            </p>
           </div>
           <div className="rightPrices">
             <p>
               <strong>Subtotal </strong>
-              <strong>$Hallo</strong>
+              <strong>${selectedFly[0].price}</strong>
             </p>
             <p>
               <strong>Taxes and Fees </strong>
-              <strong>Hallo</strong>
+              <strong>
+                ${selectedFly[0].total_price - selectedFly[0].price}
+              </strong>
             </p>
             <p>
               <strong>Total </strong>
-              <strong>$Hallo</strong>
+              <strong>${selectedFly[0].total_price}</strong>
             </p>
           </div>
         </>

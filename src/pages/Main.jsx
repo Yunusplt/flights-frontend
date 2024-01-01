@@ -3,6 +3,37 @@ import flylogo from "../img/flylogo.png";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+export const formatTime = (time) => {
+    const [hours, minutes] = time.split(":");
+
+    if (hours > 12) {
+      return `${hours - 12}:${minutes} PM`;
+    }
+
+    return `${hours}:${minutes} AM`;
+  };
+
+export const duration = (arr, dep) => {
+        const [arrHours, arrMinutes] = arr.split(":");
+        const [depHours, depMinutes] = dep.split(":");
+
+        if (arrMinutes < depMinutes) {
+          const durHours = arrHours - depHours - 1;
+          const durMinutes = +arrMinutes + 60 - depMinutes;
+
+          return `${durHours}h ${durMinutes}m`;
+        }
+
+        return `${arrHours - depHours}h ${arrMinutes - depMinutes}m`;
+      };
+
+export const stopDuration = (time) => {
+           const [stopHours, stopMinutes] = time.split(":");
+           return `${
+             stopHours !== "00" ? stopHours + "h" : ""
+           } ${stopMinutes}m`;
+         };
+
 export const Main = () => {
   const [flights, setFlights] = useState([]);
   const [selectedFly, setSelectedFly] = useState([]);
@@ -28,6 +59,37 @@ export const Main = () => {
   }, []);
 
 
+
+  // const formatTime =(time)=>{
+  //   const [hours, minutes] = time.split(":");
+
+  //   if (hours > 12) {
+  //     return `${hours-12}:${minutes} PM`;
+  //   }
+
+  //   return `${hours}:${minutes} AM`
+  //   }
+
+
+    // const duration=(arr, dep)=>{
+    //    const [arrHours, arrMinutes] = arr.split(":");
+    //    const [depHours, depMinutes] = dep.split(":");
+
+    //    if (arrMinutes < depMinutes) {
+    //       const durHours = (arrHours - depHours) - 1 
+    //       const durMinutes = (+arrMinutes + 60) - depMinutes
+          
+    //       return `${durHours}h ${durMinutes}m`
+    //    }
+
+    //    return `${arrHours - depHours}h ${arrMinutes-depMinutes}m`
+    // }
+
+    // const stopDuration =(time)=>{
+    //   const [stopHours, stopMinutes] = time.split(":");
+    //   return `${stopHours !== "00" ? stopHours+"h" : ""} ${stopMinutes}m`
+    // }
+
   return (
     <div className="tableDiv">
       <section className="left">
@@ -36,7 +98,7 @@ export const Main = () => {
           Select a tour that suits you below.
         </h5>
         <div className="bg-white rounded ">
-          <table className="table table-hover" >
+          <table className="table table-hover">
             <tbody>
               {flights.map((item, index) => {
                 return (
@@ -44,9 +106,7 @@ export const Main = () => {
                     key={index}
                     onClick={() => selectedFlight(item.id)}
                     style={{
-                      outline:
-                        selectedRow === item.id ? "1px solid blue" : "",
-                      
+                      outline: selectedRow === item.id ? "1px solid blue" : "",
                     }}
                     className={selectedRow === item.id ? "table-active" : ""}
                   >
@@ -54,12 +114,15 @@ export const Main = () => {
                       <img src={flylogo} alt="flylogo" />
                     </td>
                     <td>
-                      <strong>"item.duration"</strong>
+                      <strong>
+                        {duration(item.arrival_time, item.departure_time)}
+                      </strong>
                       <p>{item.airline}</p>
                     </td>
                     <td>
                       <strong>
-                        {item.departure_time} - {item.arrival_time}
+                        {formatTime(item.departure_time)} -{" "}
+                        {formatTime(item.arrival_time)}
                       </strong>
                     </td>
                     <td id="tdStop">
@@ -70,7 +133,7 @@ export const Main = () => {
                       </strong>
                       <p>
                         {item.stopAmount
-                          ? item.stopDuration + " in " + item.stopPlace
+                          ? stopDuration(item.stopDuration) + " in " + item.stopPlace
                           : ""}
                       </p>
                     </td>
@@ -94,13 +157,19 @@ export const Main = () => {
               </p>
               <strong>{selectedFly[0].airline}</strong>
               <p>{selectedFly[0].flight_number}</p>
-              <strong>"durationTime"</strong>
-              <strong style={{ display: "inline-block" }}>
-                "d_time and a_time"
+              <strong>
+                {duration(
+                  selectedFly[0].arrival_time,
+                  selectedFly[0].departure_time
+                )}
+              </strong>
+              <strong style={{ display: "block" }}>
+                {formatTime(selectedFly[0].departure_time)} - 
+                {formatTime(selectedFly[0].arrival_time)}
               </strong>
               <p>
                 {selectedFly[0].stopAmount
-                  ? selectedFly[0].stopDuration +
+                  ? stopDuration(selectedFly[0].stopDuration) +
                     " in " +
                     selectedFly[0].stopPlace
                   : ""}
@@ -121,7 +190,9 @@ export const Main = () => {
                 <strong>Total </strong>
                 <strong>${selectedFly[0].total_price}</strong>
               </p>
-              <Link to="/BookingPage" className="btn btn-primary">Next</Link>
+              <Link to="/BookingPage" state={selectedFly} className="btn btn-primary">
+                Next
+              </Link>
             </div>
           </>
         ) : (
