@@ -1,8 +1,12 @@
 import React from 'react'
+import successImg from "../img/success.png"
 
 const Success = () => {
   return (
-    <div style={{marginTop:"85px"}}>Success</div>
+    <div className='success' >
+        <p>Your flight has been booked successfully! Have a great trip! ✖️</p>
+        <img src={successImg} alt="successImg" />
+    </div>
   )
 }
 

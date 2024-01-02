@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 import flylogo from "../img/flylogo.png";
 import airplane from "../img/airplane.png"
 import { Formik, Form } from "formik";
@@ -14,6 +14,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { duration, formatTime, stopDuration } from "./Main";
 
+//! Yup Validation 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
@@ -30,23 +31,23 @@ const SignupSchema = Yup.object().shape({
 });
 
 const BookingPage = () => {
+
+
   const [showName, setShowName] = useState(false);
   const [showSurname, setShowSurname] = useState(false);
   const [showEmail, setShowEmail] = useState(false);
   const [showAddress, setShowAddress] = useState(false);
 
   const handleClickShowName = () => setShowName((showName) => !showName);
-  const handleClickShowSurname = () =>
-    setShowSurname((showSurname) => !showSurname);
+  const handleClickShowSurname = () =>setShowSurname((showSurname) => !showSurname);
   const handleClickShowEmail = () => setShowEmail((showEmail) => !showEmail);
-  const handleClickShowAddress = () =>
-    setShowAddress((showAddress) => !showAddress);
+  const handleClickShowAddress = () =>setShowAddress((showAddress) => !showAddress);
 
    const url = "http://127.0.0.1:8000/passenger/";
 
    const navigate = useNavigate()
-
-   const MyContext = createContext()
+   const location = useLocation()
+   const selectedFly = location.state
 
    const booking =async(passengerInfo)=>{
     try {
@@ -59,20 +60,20 @@ const BookingPage = () => {
     }
    }
 
-   const location = useLocation()
-   const selectedFly = location.state
+  //todo  const reservation=async(passengerInfo)=>{
+  //     const reservationInfo = passengerInfo + selectedFly
+  //       console.log(passengerInfo);
+  //       console.log(...selectedFly);
+  //  }
 
-   console.log(selectedFly);
-
-   const reservation=async()=>{
-        
-   }
 
   return (
     <div className="bookingDiv">
-      <section className="left">
+      <header>
         <h1 className="table-title">First class travel at economy prices</h1>
-        <div className="bg-white rounded formDiv">
+      </header>
+      <section className="left">
+        <div className="bg-white formDiv">
           <Formik
             initialValues={{
               name: "",
@@ -84,6 +85,7 @@ const BookingPage = () => {
             onSubmit={(values, actions) => {
               console.log(values);
               booking(values);
+              //todo reservation(values)
               actions.resetForm();
             }}
           >
@@ -104,7 +106,7 @@ const BookingPage = () => {
                     padding: "25px",
                   }}
                 >
-                  <div>
+                  <div className="formHeader">
                     <h3>Passenger Information</h3>
                     <h6>
                       The information below is needed to <br /> book your
@@ -195,31 +197,31 @@ const BookingPage = () => {
       </section>
       <section className="right">
         <>
-          <div className="rightBox rounded">
+          <div className="selectedInfo">
             <p>
               <img src={flylogo} alt="flyLogo" />
             </p>
-            <strong>{selectedFly[0].airline}</strong>
+            <span>{selectedFly[0].airline}</span>
             <p>{selectedFly[0].flight_number}</p>
-            <strong>
+            <span>
               {duration(
                 selectedFly[0].arrival_time,
                 selectedFly[0].departure_time
               )}
-            </strong>
-            <strong style={{ display: "block" }}>
+            </span>
+            <span style={{ display: "block" }}>
               {formatTime(selectedFly[0].departure_time)} -
               {formatTime(selectedFly[0].arrival_time)}
-            </strong>
+            </span>
             <p>
-              {selectedFly[0].stopAmount
-                ? stopDuration(selectedFly[0].stopDuration) +
+              {selectedFly[0].stop_Amount
+                ? stopDuration(selectedFly[0].stop_duration) +
                   " in " +
-                  selectedFly[0].stopPlace
+                  selectedFly[0].stop_place
                 : ""}
             </p>
           </div>
-          <div className="rightPrices">
+          <div className="selectedPrices">
             <p>
               <strong>Subtotal </strong>
               <strong>${selectedFly[0].price}</strong>

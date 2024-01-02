@@ -10,7 +10,7 @@ function OffcanvasExample() {
   return (
     <>
       <Navbar expand={"sm"} className="bg-body-tertiary p-0 fixed-top navbar">
-        <Container fluid style={{backgroundColor:"#F2F5F7"}}>
+        <Container fluid className="navbar">
           <Navbar.Brand href="#home">
             <img
               src={logo}

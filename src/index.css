@@ -4,93 +4,64 @@
     box-sizing: border-box;
 }
 
-body{
-    background-color: #F2F5F7;
-    height: 1440px;
-    position: relative;
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto&display=swap');
+
+/*! NAVBAR */
+.navbar{
+    max-width: 1440px;
+    height: 112px;  
+    background-color: #F2F5F7;         
 }
 
 
-/*!##### FOOTER #####*/
-footer{
+
+/*!##### MAIN.JSX ######*/
+
+.mainPage{
     position: absolute;
-    width: 100%;
-    bottom: 0;
+    top: 112px;
+    width: 1440px;
+    height: 1040px;
+    background-color: #F2F5F7;
 }
 
-footer .d-flex{
-    padding-left: 7rem;
-}
-
-footer section{
-  margin: 1rem;
-  width: 200px;
-}
-
-.sec1{
-    flex-grow: 3; 
-}
-.sec1 p{
-    max-width: 360px;
-    padding-left: 1rem;
-    font-size: 14px;
-    line-height: 21px;
-}
-.sec1 .social{
-    padding-left: 1rem;
-}
-
-.sec2{
-    flex-grow: 1;
-    padding-top: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.sec2 h5 {
-    padding-right: 25px;
-}
-
-.sec3{
-    flex-grow: 7;   
-    padding-top: 1rem;
-}
-
-a {
-    text-decoration: none;
-    color: black;
+header{
+    position: absolute;
+    top: 43px;
+    left: 151px;
+    color: #505D68;
 }
 
 
 
-/*!##### TABLE ######*/
-.tableDiv{
-    position: relative;
-    top: 83px;
-    height: 80vh;
-    margin-bottom: 100px;
+header h1{
+    width: 764px;
+    height: 65px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    font-family: "Roboto";
 }
-.tableDiv .left{
+
+header h2{
+    width: 400px;
+    height: 28px;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+.mainPage .left{
     width: 872px;
     position: absolute;
+    top: 170px;
     left: 151px;
 }
-table{
-    margin-top: 20px;
-    height: 550px;
-}
-.rounded{
-    padding: 3px 14px;
-}
 
-.left .rounded{
-    margin-top: 45px;
-}
-.right .rounded{
-    margin-top: 38px;
-}
-.left .formDiv{
-    margin-top: 75px;
+.tableDiv{
+    padding: 18px 14px 3px;
+    border-radius: 8px;
 }
 
 tr:last-child{
@@ -101,9 +72,6 @@ tr:hover{
     cursor: pointer;
 }
 
-td{
-    padding: 10px !important;
-}
 td p{
     margin: 0px
 }
@@ -119,33 +87,96 @@ td p{
     padding-right: 25px !important;
 }
 
-.table-title{
-    width: 764px;
-    font-size: 48px;
-    line-height: 56.25px;
+p strong:first-child {
+    margin-right: 2rem;
 }
 
+.right span,
+.right p, .left span{
+    font-weight: 600;
+}
 
 /*!##### RIGHT #####*/
 .right{
     position: absolute;
-    top: 95px;
+    top: 170px;
     left: 1059px;
     text-align: right;
-    
 }
 
-.rightBox{
-    background-color: white;
+.selectedInfo {
     width: 238px;
     height: 235px;
+    background-color:#FFFFFF ;
     padding: 20px;
+    border-radius: 12px;
 }
-.rightBox p{
-    color: blue;
+
+.selectedInfo p{
+    color: #605DEC;
 }
-.rightPrices{
+.selectedPrices{
     padding: 20px;
+    font-family: "Roboto";
+    line-height: 1;
+}
+
+
+
+/*!##### FOOTER #####*/
+footer {
+    position: relative;
+    /* bottom: 0px; */
+    top: 1600px;
+    max-width: 1440px;
+    width: 100%;
+    z-index: 0;
+}
+
+footer .d-flex {
+    padding-left: 7rem;
+}
+
+footer section {
+    margin: 1rem;
+    width: 200px;
+}
+
+.sec1 {
+    flex-grow: 3;
+}
+
+.sec1 p {
+    max-width: 360px;
+    padding-left: 1rem;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.sec1 .social {
+    padding-left: 1rem;
+}
+
+.sec2 {
+    flex-grow: 1;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sec2 h5 {
+    padding-right: 25px;
+}
+
+.sec3 {
+    flex-grow: 7;
+    padding-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -153,20 +184,27 @@ td p{
 
 
 .bookingDiv {
-    position: relative;
-    top: 83px;
-    height: 80vh;
-    margin-bottom: 100px;
+    position: absolute;
+    top: 112px;
+    width: 1440px;
+    height: 1040px;
+    background-color: #F2F5F7;
 }
 
 .bookingDiv .left {
     width: 568px;
+    height: 506px;
     position: absolute;
+    top: 159px;
     left: 151px;
+    z-index: 3;
 }
 
 /*!##### FORM #####*/
-
+.formDiv{
+    border-radius: 12px;
+    
+}
 
 .input{
     position: relative;
@@ -180,12 +218,27 @@ td p{
     right: 15px;
 }
 
+.formHeader h3{
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28.13px;
+    color: #505D68;
+}
+.formHeader h6{
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #505D68;
+}
+
 .airplane{
     position: absolute;
     top: 500px;
-    left: -545px;
+    left: -545px; 
     animation: moveRight 4s ease-out forwards;
-    z-index: -2;
+    z-index: 2;
 
 }
 
@@ -198,4 +251,204 @@ td p{
         left: 1050px;
         transform: translateX(-50%);
     }
+}
+
+
+/*! success page */
+.success{
+    position: absolute;
+    width: 1440px;
+    height: 1040px;
+    background-color: #F2F5F7;
+}
+.success p{
+    position: absolute;
+    top: 126px;
+    left: 150px;
+    border: 1px solid ;
+    width: 496px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success img{
+    position: absolute;
+    top: 196px;
+    left: 405px;
+    width: 538px;
+    height: 612px;
+}
+
+/*! error */
+
+.error{
+    position: absolute;
+    width: 1440px;
+    height: 1040px;
+    background-color: #F2F5F7;
+}
+
+.background{
+    width: 1440px;
+    height: 722px;
+    position: absolute;
+    top: 250px;
+    background-image: url("./img/successBackgroudn.png");
+    background-size: 1440px 650px;
+    background-repeat: no-repeat;
+
+}
+
+.background p{
+    position: absolute;
+    top: -100px;
+    left: 150px;
+    border: 1px solid #A40000 ;
+    color: #A40000;
+    width: 835px; 
+    height: 64px;
+    padding: 16px 16px 16px 24px;
+    background-color: #FDEFEF;
+    border-radius: 8px;
+}
+
+.background img{
+    width: 446px;
+    height: 455px;
+    position: absolute;
+    top: 100px;
+    left: 497px;
+
+}
+
+
+
+/*! MOBILE */
+
+.mainMobile{
+    position: absolute;
+    top: 110px;
+    max-width: 576px;
+    width: 100%;
+    background-color: #F2F5F7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    min-height: 100vh;
+
+}
+.upSection{
+    display: flex;
+    justify-content: space-around;
+    
+}
+.downSection {
+    display: flex;
+}
+.flyCard{
+    width: 290px;
+    height: 151px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-radius: 4px;
+    position: relative;
+}
+
+.flyCard:active{
+    background-color:#F6F6FE ;
+    border: 1px solid #605DEC;
+}
+
+.flyCard p{
+    margin-bottom: 0;
+}
+.flyCard div{
+    padding-left: 1rem;
+}
+
+@media screen and (max-width: 576px) {
+    .mainPage {
+        display: none;
+    }
+    .mainFooter{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .mainPage {
+        display: block;
+        /* Tabloyu görünür hale getir */
+    }
+
+    .mainMobile {
+        display: none;
+        /* Card'ı gizle */
+    }
+    .footerMobile{
+        display: none;
+    }
+
+}
+
+.mobileHeader{
+    position: relative;
+    height: 200px;
+    width: 290px;
+    top: 0;
+}
+
+.mobileHeader h1{
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+    color: #505D68;
+}
+
+.mobileHeader h2{
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16.41px;
+    color: #505D68;
+    margin-top: 1rem;
+}
+
+.footerMobile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.footerMobile p{
+    font-family: "Roboto";
+    line-height: 21px;
+    color: #505D68;
+}
+
+.footerMobile ul{
+    list-style: none;
+    text-align: center;
+    line-height: 50px;
+}
+
+.footerMobile img{
+    margin: 2rem;
+}
+
+hr{
+    width: 200px;
+    border: 1px solid;
+    color: #C2D1D9;
+
 }
