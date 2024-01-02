@@ -11,7 +11,7 @@ function OffcanvasExample() {
     <>
       <Navbar expand={"sm"} className="bg-body-tertiary p-0 fixed-top navbar">
         <Container fluid className="navbar">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="">
             <img
               src={logo}
               width="119px"
@@ -40,11 +40,11 @@ function OffcanvasExample() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
-                <Nav.Link href="#">HOME</Nav.Link>
-                <Nav.Link href="#">ABOUT US</Nav.Link>
-                <Nav.Link href="#">FEATURES</Nav.Link>
-                <Nav.Link href="#">NEWSROOM</Nav.Link>
-                <Nav.Link href="#">CONTACT</Nav.Link>
+                <Nav.Link href="">HOME</Nav.Link>
+                <Nav.Link href="">ABOUT US</Nav.Link>
+                <Nav.Link href="">FEATURES</Nav.Link>
+                <Nav.Link href="">NEWSROOM</Nav.Link>
+                <Nav.Link href="">CONTACT</Nav.Link>
               </Nav>
               <Button variant="outline-success" className="me-5">
                 BOOK NOW

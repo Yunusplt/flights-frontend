@@ -54,25 +54,20 @@ const BookingPage = () => {
    const booking =async(passengerInfo)=>{
     try {
       const {data} = await axios.post(url, passengerInfo)
-      console.log(data);
+  
       const reservation = async () => {
         const myData = {
           passenger_id: data.id,
           flight_id: selectedFly[0].id,
         };
         await axios.post(url2, myData)
-        console.log(myData);
-        };
+      };
       reservation()
       navigate("/success")
     } catch (error) {
-      console.log(error);
       navigate("/error")
     }
-
    }
-
- 
 
 
   return (
@@ -132,7 +127,7 @@ const BookingPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       helperText={touched.name && errors.name}
-                      error={touched.name && errors.name}
+                      error={touched.name && Boolean(errors.name)}
                       fullWidth
                     />
                     <span onClick={handleClickShowName}>
@@ -150,7 +145,7 @@ const BookingPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       helperText={touched.surname && errors.surname}
-                      error={touched.surname && errors.surname}
+                      error={touched.surname && Boolean(errors.surname)}
                       fullWidth
                     />
                     <span onClick={handleClickShowSurname}>
@@ -168,7 +163,7 @@ const BookingPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       helperText={touched.email && errors.email}
-                      error={touched.email && errors.email}
+                      error={touched.email && Boolean(errors.email)}
                       fullWidth
                     />
                     <span onClick={handleClickShowEmail}>
@@ -186,7 +181,7 @@ const BookingPage = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       helperText={touched.address && errors.address}
-                      error={touched.address && errors.address}
+                      error={touched.address && Boolean(errors.address)}
                       fullWidth
                     />
                     <span onClick={handleClickShowAddress}>
@@ -210,23 +205,9 @@ const BookingPage = () => {
             </p>
             <span>{selectedFly[0].airline}</span>
             <p>{selectedFly[0].flight_number}</p>
-            <span>
-              {duration(
-                selectedFly[0].arrival_time,
-                selectedFly[0].departure_time
-              )}
-            </span>
-            <span style={{ display: "block" }}>
-              {formatTime(selectedFly[0].departure_time)} -
-              {formatTime(selectedFly[0].arrival_time)}
-            </span>
-            <p>
-              {selectedFly[0].stop_Amount
-                ? stopDuration(selectedFly[0].stop_duration) +
-                  " in " +
-                  selectedFly[0].stop_place
-                : ""}
-            </p>
+            <span>{duration(selectedFly[0].arrival_time, selectedFly[0].departure_time  )}</span>
+            <span style={{ display: "block" }}>  {formatTime(selectedFly[0].departure_time)} -  {formatTime(selectedFly[0].arrival_time)}</span>
+            <p>{selectedFly[0].stop_Amount  ? stopDuration(selectedFly[0].stop_duration) +  " in " +  selectedFly[0].stop_place  : ""}</p>
           </div>
           <div className="selectedPrices">
             <p>
@@ -235,9 +216,7 @@ const BookingPage = () => {
             </p>
             <p>
               <strong>Taxes and Fees </strong>
-              <strong>
-                ${selectedFly[0].total_price - selectedFly[0].price}
-              </strong>
+              <strong>${selectedFly[0].total_price - selectedFly[0].price}</strong>
             </p>
             <p>
               <strong>Total </strong>
@@ -253,23 +232,9 @@ const BookingPage = () => {
           </p>
           <span>{selectedFly[0].airline}</span>
           <p>{selectedFly[0].flight_number}</p>
-          <span>
-            {duration(
-              selectedFly[0].arrival_time,
-              selectedFly[0].departure_time
-            )}
-          </span>
-          <span style={{ display: "block" }}>
-            {formatTime(selectedFly[0].departure_time)} -
-            {formatTime(selectedFly[0].arrival_time)}
-          </span>
-          <p>
-            {selectedFly[0].stop_amount
-              ? stopDuration(selectedFly[0].stop_duration) +
-                " in " +
-                selectedFly[0].stop_place
-              : ""}
-          </p>
+          <span>{duration( selectedFly[0].arrival_time,  selectedFly[0].departure_time)}</span>
+          <span style={{ display: "block" }}>{formatTime(selectedFly[0].departure_time)} -  {formatTime(selectedFly[0].arrival_time)}</span>
+          <p>{selectedFly[0].stop_amount  ? stopDuration(selectedFly[0].stop_duration) +  " in " +  selectedFly[0].stop_place  : ""}</p>
         </div>
         <div className="selectedPrices">
           <p>
@@ -278,9 +243,7 @@ const BookingPage = () => {
           </p>
           <p>
             <strong>Taxes and Fees </strong>
-            <strong>
-              ${selectedFly[0].total_price - selectedFly[0].price}
-            </strong>
+            <strong>${selectedFly[0].total_price - selectedFly[0].price}</strong>
           </p>
           <p>
             <strong>Total </strong>

@@ -6,7 +6,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Roboto&display=swap');
 
-/*! NAVBAR */
+/*!#############################*/
+/*!######### NAVBAR ############*/
 .navbar{
     max-width: 1440px;
     height: 112px;  
@@ -15,7 +16,8 @@
 
 
 
-/*!##### MAIN.JSX ######*/
+/*!###############################*/
+/*!######### MAIN.JSX ############*/
 
 .mainPage{
     position: relative; 
@@ -96,7 +98,8 @@ p strong:first-child {
     font-weight: 600;
 }
 
-/*!##### RIGHT #####*/
+/*!#############################*/
+/*!######### RIGHT ############*/
 .right{
     position: absolute;
     top: 170px;
@@ -122,17 +125,15 @@ p strong:first-child {
 }
 
 
-
-/*!##### FOOTER #####*/
+/*!#############################*/
+/*!######### FOOTER ############*/
 footer {
     position: absolute;
-    /* bottom: 0; */
-    /* bottom: 0px;
-    top: 1600px; */
     max-width: 1440px;
     width: 100%;
     z-index: 0;
     margin-top: 112px;
+    padding-bottom: 1.5rem;
 }
 
 footer .d-flex {
@@ -181,9 +182,8 @@ a {
     color: black;
 }
 
-
-/*!##### BOOKING PAGE ##### */
-
+/*!###################################*/
+/*!######### BOOKING PAGE ############*/
 
 .bookingDiv {
     position: relative;
@@ -202,7 +202,8 @@ a {
     z-index: 3;
 }
 
-/*!##### FORM #####*/
+/*!#############################*/
+/*!########## FORM #############*/
 .formDiv{
     border-radius: 12px;
     
@@ -256,7 +257,8 @@ a {
 }
 
 
-/*! success page */
+/*!##############################*/
+/*!######### SUCCESS ############*/
 .success{
     position: relative;
     width: 1440px;
@@ -283,7 +285,8 @@ a {
     height: 612px;
 }
 
-/*! error */
+/*!#############################*/
+/*!########## ERROR ############*/
 
 .error{
     position: relative;
@@ -326,8 +329,8 @@ a {
 }
 
 
-
-/*! MOBILE */
+/*todo ########################################*/
+/*todo ############## MOBILE ##################*/
 
 .mainMobile{
     position: relative;
@@ -372,87 +375,6 @@ a {
 }
 .flyCard div{
     padding-left: 1rem;
-}
-
-@media screen and (max-width: 576px) {
-    .mainPage {
-        display: none;
-    }
-    .mainFooter{
-        display: none !important;
-    }
-    .right{
-        display: none;
-    }
-    .flyInfoMobile{
-        position: sticky;
-        bottom: 0px;
-        text-align: center;
-        background-color:#F2F5F7 ;
-        padding-top: 5px;
-    }
-    .flyInfoMobile .selectedInfo{
-        width: 292px;
-    }
-    .flyInfoMobile .selectedPrices{
-        width: 290px;
-        text-align: right;
-    }
-    p strong:last-child{
-       padding-right: 2rem;
-    }
-
-    /*!form */
-    .bookingDiv .left {
-        width: 340px;
-        height: 407px;
-        position: relative;
-        top: 190px;
-        left: 2%;
-        z-index: 3;
-    }
-    .bookingDiv header{
-        position: absolute;
-        top: 0px;
-        left: 2%;
-    }
-        .table-title {
-            width: 348px;
-            text-align: center;
-    
-        }
-    .flyInfoMobileBooking{
-        position: absolute;
-        top: 680px;
-        left: 3%;
-        text-align: center;
-    }
-    .flyInfoMobileBooking .selectedInfo{
-        width: 292px;
-    }
-        
-    .flyInfoMobileBooking .selectedPrices {
-        width: 290px;
-        text-align: right;
-    }
-        
-}
-
-@media screen and (min-width: 576px) {
-    /* .mainPage {
-        display: block;
-    } */
-
-    .mainMobile {
-        display: none;
-    }
-    .footerMobile{
-        display: none;
-    }
-        .flyInfoMobileBooking {
-            display: none;
-        }
-
 }
 
 .mobileHeader{
@@ -506,5 +428,143 @@ hr{
     border: 1px solid;
     color: #C2D1D9;
     margin: 0px auto;
+
+}
+
+/*todo #########################################*/
+/*todo ############## RESPONs ##################*/
+
+@media screen and (max-width: 576px) {
+    .mainPage {
+        display: none;
+    }
+
+    .mainFooter {
+        display: none !important;
+    }
+
+    .right {
+        display: none;
+    }
+
+    .flyInfoMobile {
+        position: sticky;
+        bottom: 0px;
+        text-align: center;
+        background-color: #F2F5F7;
+        padding-top: 5px;
+    }
+
+    .flyInfoMobile .selectedInfo {
+        width: 292px;
+    }
+
+    .flyInfoMobile .selectedPrices {
+        width: 290px;
+        text-align: right;
+    }
+
+    p strong:last-child {
+        padding-right: 2rem;
+    }
+
+    /*!form */
+    .bookingDiv .left {
+        width: 340px;
+        height: 407px;
+        position: relative;
+        top: 190px;
+        left: 2%;
+        z-index: 3;
+    }
+
+    .bookingDiv header {
+        position: absolute;
+        top: 0px;
+        left: 2%;
+    }
+
+    .table-title {
+        width: 348px;
+        text-align: center;
+
+    }
+
+    .flyInfoMobileBooking {
+        position: absolute;
+        top: 680px;
+        left: 3%;
+        text-align: center;
+    }
+
+    .flyInfoMobileBooking .selectedInfo {
+        width: 292px;
+    }
+
+    .flyInfoMobileBooking .selectedPrices {
+        width: 290px;
+        text-align: right;
+    }
+
+    /*! success */
+    .success img {
+        position: absolute;
+        top: 220px;
+        left: 0px;
+        width: 400px;
+        height: 612px;
+    }
+    .success p {
+        position: relative;
+        top: 115px;
+        left: 30px;
+        border: 1px solid;
+        width: 335px;
+        height: 83px;
+        padding: 0px 1rem;
+        border-radius: 8px;
+        font-size: 20px;
+        color: #007B65;
+    }
+    
+    /*! error */
+    .background img {
+        width: 446px;
+        height: 455px;
+        position: absolute;
+        top: 50px;
+        left: 0px; 
+    }
+    .background p {
+        position: relative;
+        top: -120px;
+        left: 30px;
+        border: 1px solid #A40000;
+        color: #A40000;
+        width: 335px;
+        height: 110px;
+        padding: 16px 16px 16px 24px;
+        background-color: #FDEFEF;
+        border-radius: 8px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    /* .mainPage {
+        display: block;
+    } */
+
+    .mainMobile {
+        display: none;
+    }
+
+    .footerMobile {
+        display: none;
+    }
+
+    .flyInfoMobileBooking {
+        display: none;
+    }
 
 }
