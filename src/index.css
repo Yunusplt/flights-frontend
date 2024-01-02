@@ -10,7 +10,7 @@
 .navbar{
     max-width: 1440px;
     height: 112px;  
-    background-color: #F2F5F7;         
+    background-color: #F2F5F7;     
 }
 
 
@@ -18,7 +18,7 @@
 /*!##### MAIN.JSX ######*/
 
 .mainPage{
-    position: absolute;
+    position: relative; 
     top: 112px;
     width: 1440px;
     height: 1040px;
@@ -125,12 +125,14 @@ p strong:first-child {
 
 /*!##### FOOTER #####*/
 footer {
-    position: relative;
-    /* bottom: 0px; */
-    top: 1600px;
+    position: absolute;
+    /* bottom: 0; */
+    /* bottom: 0px;
+    top: 1600px; */
     max-width: 1440px;
     width: 100%;
     z-index: 0;
+    margin-top: 112px;
 }
 
 footer .d-flex {
@@ -184,7 +186,7 @@ a {
 
 
 .bookingDiv {
-    position: absolute;
+    position: relative;
     top: 112px;
     width: 1440px;
     height: 1040px;
@@ -256,13 +258,13 @@ a {
 
 /*! success page */
 .success{
-    position: absolute;
+    position: relative;
     width: 1440px;
-    height: 1040px;
+    height: 1200px;
     background-color: #F2F5F7;
 }
 .success p{
-    position: absolute;
+    position: relative;
     top: 126px;
     left: 150px;
     border: 1px solid ;
@@ -284,9 +286,9 @@ a {
 /*! error */
 
 .error{
-    position: absolute;
+    position: relative;
     width: 1440px;
-    height: 1040px;
+    height: 1200px;
     background-color: #F2F5F7;
 }
 
@@ -328,7 +330,7 @@ a {
 /*! MOBILE */
 
 .mainMobile{
-    position: absolute;
+    position: relative;
     top: 110px;
     max-width: 576px;
     width: 100%;
@@ -377,23 +379,79 @@ a {
         display: none;
     }
     .mainFooter{
+        display: none !important;
+    }
+    .right{
         display: none;
     }
+    .flyInfoMobile{
+        position: sticky;
+        bottom: 0px;
+        text-align: center;
+        background-color:#F2F5F7 ;
+        padding-top: 5px;
+    }
+    .flyInfoMobile .selectedInfo{
+        width: 292px;
+    }
+    .flyInfoMobile .selectedPrices{
+        width: 290px;
+        text-align: right;
+    }
+    p strong:last-child{
+       padding-right: 2rem;
+    }
+
+    /*!form */
+    .bookingDiv .left {
+        width: 340px;
+        height: 407px;
+        position: relative;
+        top: 190px;
+        left: 2%;
+        z-index: 3;
+    }
+    .bookingDiv header{
+        position: absolute;
+        top: 0px;
+        left: 2%;
+    }
+        .table-title {
+            width: 348px;
+            text-align: center;
+    
+        }
+    .flyInfoMobileBooking{
+        position: absolute;
+        top: 680px;
+        left: 3%;
+        text-align: center;
+    }
+    .flyInfoMobileBooking .selectedInfo{
+        width: 292px;
+    }
+        
+    .flyInfoMobileBooking .selectedPrices {
+        width: 290px;
+        text-align: right;
+    }
+        
 }
 
 @media screen and (min-width: 576px) {
-    .mainPage {
+    /* .mainPage {
         display: block;
-        /* Tabloyu görünür hale getir */
-    }
+    } */
 
     .mainMobile {
         display: none;
-        /* Card'ı gizle */
     }
     .footerMobile{
         display: none;
     }
+        .flyInfoMobileBooking {
+            display: none;
+        }
 
 }
 
@@ -423,10 +481,6 @@ a {
 }
 
 .footerMobile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
 }
 
@@ -440,6 +494,7 @@ a {
     list-style: none;
     text-align: center;
     line-height: 50px;
+    padding-right: 20px;
 }
 
 .footerMobile img{
@@ -450,5 +505,6 @@ hr{
     width: 200px;
     border: 1px solid;
     color: #C2D1D9;
+    margin: 0px auto;
 
 }

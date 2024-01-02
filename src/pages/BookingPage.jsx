@@ -14,6 +14,7 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { duration, formatTime, stopDuration } from "./Main";
 
+
 //! Yup Validation 
 const SignupSchema = Yup.object().shape({
   name: Yup.string()
@@ -44,6 +45,7 @@ const BookingPage = () => {
   const handleClickShowAddress = () =>setShowAddress((showAddress) => !showAddress);
 
    const url = "http://127.0.0.1:8000/passenger/";
+   const url2 = "http://127.0.0.1:8000/reservation/";
 
    const navigate = useNavigate()
    const location = useLocation()
@@ -53,18 +55,24 @@ const BookingPage = () => {
     try {
       const {data} = await axios.post(url, passengerInfo)
       console.log(data);
+      const reservation = async () => {
+        const myData = {
+          passenger_id: data.id,
+          flight_id: selectedFly[0].id,
+        };
+        await axios.post(url2, myData)
+        console.log(myData);
+        };
+      reservation()
       navigate("/success")
     } catch (error) {
       console.log(error);
       navigate("/error")
     }
+
    }
 
-  //todo  const reservation=async(passengerInfo)=>{
-  //     const reservationInfo = passengerInfo + selectedFly
-  //       console.log(passengerInfo);
-  //       console.log(...selectedFly);
-  //  }
+ 
 
 
   return (
@@ -85,7 +93,6 @@ const BookingPage = () => {
             onSubmit={(values, actions) => {
               console.log(values);
               booking(values);
-              //todo reservation(values)
               actions.resetForm();
             }}
           >
@@ -238,6 +245,48 @@ const BookingPage = () => {
             </p>
           </div>
         </>
+      </section>
+      <section className="flyInfoMobileBooking">
+        <div className="selectedInfo">
+          <p>
+            <img src={flylogo} alt="flyLogo" />
+          </p>
+          <span>{selectedFly[0].airline}</span>
+          <p>{selectedFly[0].flight_number}</p>
+          <span>
+            {duration(
+              selectedFly[0].arrival_time,
+              selectedFly[0].departure_time
+            )}
+          </span>
+          <span style={{ display: "block" }}>
+            {formatTime(selectedFly[0].departure_time)} -
+            {formatTime(selectedFly[0].arrival_time)}
+          </span>
+          <p>
+            {selectedFly[0].stop_amount
+              ? stopDuration(selectedFly[0].stop_duration) +
+                " in " +
+                selectedFly[0].stop_place
+              : ""}
+          </p>
+        </div>
+        <div className="selectedPrices">
+          <p>
+            <strong>Subtotal </strong>
+            <strong>${selectedFly[0].price}</strong>
+          </p>
+          <p>
+            <strong>Taxes and Fees </strong>
+            <strong>
+              ${selectedFly[0].total_price - selectedFly[0].price}
+            </strong>
+          </p>
+          <p>
+            <strong>Total </strong>
+            <strong>${selectedFly[0].total_price}</strong>
+          </p>
+        </div>
       </section>
       <div className="airplane">
         <img src={airplane} alt="airplane" width="550px" height="500px" />

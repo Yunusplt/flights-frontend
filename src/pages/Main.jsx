@@ -53,7 +53,7 @@ export const Main = () => {
     setSelectedFly(flights.filter((fly) => fly.id === id));
     setSelectedRow(id);
   };
-  console.log(flights);
+  console.log(selectedFly);
 
   useEffect(() => {
     getFlights();
@@ -183,7 +183,7 @@ export const Main = () => {
         </div>
         {flights.map((item, index) => {
           return (
-            <div className="flyCard">
+            <div key={index} className="flyCard" onClick={() => selectedFlight(item.id)}>
               <section className="upSection">
                 <div>
                   <img src={flylogo} alt="" />{" "}
@@ -222,6 +222,59 @@ export const Main = () => {
             </div>
           );
         })}
+        {rightSection ? (
+          <section className="flyInfoMobile">
+            <div className="selectedInfo">
+              <p>
+                <img src={flylogo} alt="flyLogo" />
+              </p>
+              <span>{selectedFly[0].airline}</span>
+              <p>{selectedFly[0].flight_number}</p>
+              <span>
+                {duration(
+                  selectedFly[0].arrival_time,
+                  selectedFly[0].departure_time
+                )}
+              </span>
+              <span style={{ display: "block" }}>
+                {formatTime(selectedFly[0].departure_time)} -
+                {formatTime(selectedFly[0].arrival_time)}
+              </span>
+              <p>
+                {selectedFly[0].stop_amount
+                  ? stopDuration(selectedFly[0].stop_duration) +
+                    " in " +
+                    selectedFly[0].stop_place
+                  : ""}
+              </p>
+            </div>
+            <div className="selectedPrices">
+              <p>
+                <strong>Subtotal </strong>
+                <strong>${selectedFly[0].price}</strong>
+              </p>
+              <p>
+                <strong>Taxes and Fees </strong>
+                <strong>
+                  ${selectedFly[0].total_price - selectedFly[0].price}
+                </strong>
+              </p>
+              <p>
+                <strong>Total </strong>
+                <strong>${selectedFly[0].total_price}</strong>
+              </p>
+              <Link
+                to="/BookingPage"
+                state={selectedFly}
+                className="btn btn-primary"
+              >
+                Next
+              </Link>
+            </div>
+          </section>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

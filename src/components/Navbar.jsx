@@ -28,7 +28,7 @@ function OffcanvasExample() {
             style={{ width: "236px" }}
           >
             <Offcanvas.Header closeButton>
-              <Navbar.Brand href="#home">
+              <Navbar.Brand href="#">
                 <img
                   src={logo}
                   width="119px"
@@ -40,16 +40,13 @@ function OffcanvasExample() {
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 pe-3">
-                <Nav.Link href="#home">HOME</Nav.Link>
-                <Nav.Link href="#aboutus">ABOUT US</Nav.Link>
-                <Nav.Link href="#features">FEATURES</Nav.Link>
-                <Nav.Link href="#newsroom">NEWSROOM</Nav.Link>
-                <Nav.Link href="#contact">CONTACT</Nav.Link>
+                <Nav.Link href="#">HOME</Nav.Link>
+                <Nav.Link href="#">ABOUT US</Nav.Link>
+                <Nav.Link href="#">FEATURES</Nav.Link>
+                <Nav.Link href="#">NEWSROOM</Nav.Link>
+                <Nav.Link href="#">CONTACT</Nav.Link>
               </Nav>
-              <Button
-                variant="outline-success"
-                className="me-5"
-              >
+              <Button variant="outline-success" className="me-5">
                 BOOK NOW
               </Button>
             </Offcanvas.Body>
