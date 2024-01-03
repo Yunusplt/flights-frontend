@@ -469,12 +469,15 @@ hr{
     }
 
     /*!form */
-    .BookingPage {
+    .bookingDiv{
         position: relative;
         top: 112px;
         width: 550px;
         height: 1040px;
         background-color: #F2F5F7;
+    }
+    .airplane{
+        display: none;
     }
 
     .bookingDiv .left {
