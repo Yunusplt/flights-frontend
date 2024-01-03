@@ -469,19 +469,27 @@ hr{
     }
 
     /*!form */
+    .bookingDiv {
+        position: relative;
+        top: 112px;
+        width: 550px;
+        height: 1040px;
+        background-color: #F2F5F7;
+    }
+
     .bookingDiv .left {
         width: 340px;
         height: 407px;
         position: relative;
         top: 190px;
-        left: 2%;
+        left: 4%;
         z-index: 3;
     }
 
     .bookingDiv header {
         position: absolute;
         top: 0px;
-        left: 2%;
+        left: 4%;
     }
 
     .table-title {
@@ -493,7 +501,7 @@ hr{
     .flyInfoMobileBooking {
         position: absolute;
         top: 680px;
-        left: 3%;
+        left: 8%;
         text-align: center;
     }
 
@@ -551,9 +559,6 @@ hr{
 }
 
 @media screen and (min-width: 576px) {
-    /* .mainPage {
-        display: block;
-    } */
 
     .mainMobile {
         display: none;
