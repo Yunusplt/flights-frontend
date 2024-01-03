@@ -14,7 +14,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={ <Main />}/> 
-          <Route path="BookingPage" element={ <BookingPage/>}/> 
+          <Route path="flights/:id" element={ <BookingPage/>}/> 
           <Route path="success" element={ <Success/>}/> 
           <Route path="error" element={ <Error/>}/> 
         </Routes>

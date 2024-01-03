@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import flylogo from "../img/flylogo.png";
 import airplane from "../img/airplane.png"
 import { Formik, Form } from "formik";
@@ -11,7 +11,7 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { duration, formatTime, stopDuration } from "./Main";
 import { deployUrl, localUrl } from "./Main";
 
@@ -32,7 +32,8 @@ const SignupSchema = Yup.object().shape({
 });
 
 const BookingPage = () => {
-
+const { id } = useParams();
+console.log(id);
 
   const [showName, setShowName] = useState(false);
   const [showSurname, setShowSurname] = useState(false);
@@ -47,9 +48,14 @@ const BookingPage = () => {
   //  const url = "http://127.0.0.1:8000/passenger/";
   //  const url2 = "http://127.0.0.1:8000/reservation/";
 
+  useEffect(() => {
+    
+  }, [])
+  
+
    const navigate = useNavigate()
-   const location = useLocation()
-   const selectedFly = location.state
+  //  const location = useLocation()
+  //  const selectedFly = location.state
 
    const booking =async(passengerInfo)=>{
     try {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import flylogo from "../img/flylogo.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const formatTime = (time) => {
     const [hours, minutes] = time.split(":");
@@ -41,6 +41,7 @@ export const Main = () => {
   const [selectedRow, setSelectedRow] = useState(null);
   const [rightSection, setRightSection] = useState(false);
 
+  let navigate = useNavigate();
   
 
   const getFlights = async () => {
@@ -73,7 +74,7 @@ export const Main = () => {
                   return (
                     <tr
                       key={index}
-                      onClick={() => selectedFlight(item.id)}
+                      onClick={() => navigate(`/flights/${item.id}`)}
                       style={{
                         outline:
                           selectedRow === item.id ? "1px solid blue" : "",
@@ -163,7 +164,7 @@ export const Main = () => {
               </p>
               <Link
                 to="/BookingPage/"
-                state={selectedFly}
+                // state={selectedFly}
                 className="btn btn-primary"
               >
                 Next
