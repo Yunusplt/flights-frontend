@@ -476,6 +476,7 @@ hr{
         width: 100%;
         height: 1040px;
         background-color: #F2F5F7;
+        
     }
     .airplane{
         display: none;
@@ -486,14 +487,16 @@ hr{
         height: 407px;
         position: relative;
         top: 190px;
-        left: 19%;
+        left: 50%;
+        transform: translateX(-50%);
         z-index: 3;
     }
 
     .bookingDiv header {
         position: absolute;
         top: 0px;
-        left: 18%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .table-title {
@@ -505,7 +508,8 @@ hr{
     .flyInfoMobileBooking {
         position: absolute;
         top: 680px;
-        left: 23.5%;
+        left: 50%;
+        transform: translateX(-50%);
         text-align: center;
     }
 
