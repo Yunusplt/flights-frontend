@@ -13,7 +13,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { duration, formatTime, stopDuration } from "./Main";
-
+import { deployUrl, localUrl } from "./Main";
 
 //! Yup Validation 
 const SignupSchema = Yup.object().shape({
@@ -44,8 +44,8 @@ const BookingPage = () => {
   const handleClickShowEmail = () => setShowEmail((showEmail) => !showEmail);
   const handleClickShowAddress = () =>setShowAddress((showAddress) => !showAddress);
 
-   const url = "http://127.0.0.1:8000/passenger/";
-   const url2 = "http://127.0.0.1:8000/reservation/";
+  //  const url = "http://127.0.0.1:8000/passenger/";
+  //  const url2 = "http://127.0.0.1:8000/reservation/";
 
    const navigate = useNavigate()
    const location = useLocation()
@@ -53,14 +53,14 @@ const BookingPage = () => {
 
    const booking =async(passengerInfo)=>{
     try {
-      const {data} = await axios.post(url, passengerInfo)
+      const {data} = await axios.post(`${deployUrl}passenger/`, passengerInfo)
   
       const reservation = async () => {
         const myData = {
           passenger_id: data.id,
           flight_id: selectedFly[0].id,
         };
-        await axios.post(url2, myData)
+        await axios.post(`${deployUrl}reservation/`, myData);
       };
       reservation()
       navigate("/success")

@@ -32,16 +32,19 @@ export const stopDuration = (time) => {
            return `${stopHours !== "00" ? stopHours + "h" : ""} ${stopMinutes}m`;
       };
 
+export const localUrl = "http://127.0.0.1:8000/";
+export const deployUrl = "https://ynsplt.pythonanywhere.com/"
+
 export const Main = () => {
   const [flights, setFlights] = useState([]);
   const [selectedFly, setSelectedFly] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
   const [rightSection, setRightSection] = useState(false);
 
-  const url = "http://127.0.0.1:8000/flights/";
+  
 
   const getFlights = async () => {
-    const flightsData = await axios.get(url);
+    const flightsData = await axios.get(`${deployUrl}flights/`);
     setFlights(flightsData.data);
   };
 
@@ -54,7 +57,6 @@ export const Main = () => {
   useEffect(() => {
     getFlights();
   }, []);
-
 
   return (
     <>
@@ -72,22 +74,40 @@ export const Main = () => {
                     <tr
                       key={index}
                       onClick={() => selectedFlight(item.id)}
-                      style={{outline:selectedRow === item.id ? "1px solid blue" : "",}}
+                      style={{
+                        outline:
+                          selectedRow === item.id ? "1px solid blue" : "",
+                      }}
                       className={selectedRow === item.id ? "table-active" : ""}
                     >
                       <td id="tdLogo">
                         <img src={flylogo} alt="flylogo" />
                       </td>
                       <td>
-                        <span>{duration(item.arrival_time, item.departure_time)}</span>
+                        <span>
+                          {duration(item.arrival_time, item.departure_time)}
+                        </span>
                         <p>{item.airline}</p>
                       </td>
                       <td>
-                        <span>{formatTime(item.departure_time)} - {formatTime(item.arrival_time)}</span>
+                        <span>
+                          {formatTime(item.departure_time)} -{" "}
+                          {formatTime(item.arrival_time)}
+                        </span>
                       </td>
                       <td id="tdStop">
-                        <span>{item.stop_amount ? item.stop_amount + " stop"  : "Nonstop"}</span>
-                        <p>{item.stop_amount  ? stopDuration(item.stop_duration) +  " in " +  item.stop_place  : ""}</p>
+                        <span>
+                          {item.stop_amount
+                            ? item.stop_amount + " stop"
+                            : "Nonstop"}
+                        </span>
+                        <p>
+                          {item.stop_amount
+                            ? stopDuration(item.stop_duration) +
+                              " in " +
+                              item.stop_place
+                            : ""}
+                        </p>
                       </td>
                       <td id="tdPrice">
                         <span>${item.total_price}</span>
@@ -108,9 +128,23 @@ export const Main = () => {
               </p>
               <span>{selectedFly[0].airline}</span>
               <p>{selectedFly[0].flight_number}</p>
-              <span>{duration(selectedFly[0].arrival_time, selectedFly[0].departure_time)}</span>
-              <span style={{ display: "block" }}>{formatTime(selectedFly[0].departure_time)} - {formatTime(selectedFly[0].arrival_time)}</span>
-              <p>{selectedFly[0].stop_amount ? stopDuration(selectedFly[0].stop_duration) + " in " + selectedFly[0].stop_place  : ""}</p>
+              <span>
+                {duration(
+                  selectedFly[0].arrival_time,
+                  selectedFly[0].departure_time
+                )}
+              </span>
+              <span style={{ display: "block" }}>
+                {formatTime(selectedFly[0].departure_time)} -{" "}
+                {formatTime(selectedFly[0].arrival_time)}
+              </span>
+              <p>
+                {selectedFly[0].stop_amount
+                  ? stopDuration(selectedFly[0].stop_duration) +
+                    " in " +
+                    selectedFly[0].stop_place
+                  : ""}
+              </p>
             </div>
             <div className="selectedPrices">
               <p>
@@ -119,7 +153,9 @@ export const Main = () => {
               </p>
               <p>
                 <strong>Taxes and Fees </strong>
-                <strong>${selectedFly[0].total_price - selectedFly[0].price}</strong>
+                <strong>
+                  ${selectedFly[0].total_price - selectedFly[0].price}
+                </strong>
               </p>
               <p>
                 <strong>Total </strong>
@@ -145,13 +181,19 @@ export const Main = () => {
         </div>
         {flights.map((item, index) => {
           return (
-            <div key={index} className="flyCard" onClick={() => selectedFlight(item.id)}>
+            <div
+              key={index}
+              className="flyCard"
+              onClick={() => selectedFlight(item.id)}
+            >
               <section className="upSection">
                 <div>
                   <img src={flylogo} alt="" />
                 </div>
                 <div>
-                  <strong>{duration(item.arrival_time, item.departure_time)}</strong>
+                  <strong>
+                    {duration(item.arrival_time, item.departure_time)}
+                  </strong>
                   <p>{item.airline}</p>
                 </div>
                 <div style={{ position: "absolute", right: "1rem" }}>
@@ -160,11 +202,22 @@ export const Main = () => {
               </section>
               <section className="downSection">
                 <div>
-                  <strong>{formatTime(item.departure_time)} - {formatTime(item.arrival_time)}</strong>
-                  <p>{item.stop_amount  ? stopDuration(item.stop_duration) +  " in " +  item.stop_place  : ""}</p>
+                  <strong>
+                    {formatTime(item.departure_time)} -{" "}
+                    {formatTime(item.arrival_time)}
+                  </strong>
+                  <p>
+                    {item.stop_amount
+                      ? stopDuration(item.stop_duration) +
+                        " in " +
+                        item.stop_place
+                      : ""}
+                  </p>
                 </div>
                 <div>
-                  <strong>{item.stop_amount ? item.stop_amount + " stop" : "Nonstop"}</strong>
+                  <strong>
+                    {item.stop_amount ? item.stop_amount + " stop" : "Nonstop"}
+                  </strong>
                   <p>{item.travel_type}</p>
                 </div>
               </section>
@@ -179,9 +232,23 @@ export const Main = () => {
               </p>
               <span>{selectedFly[0].airline}</span>
               <p>{selectedFly[0].flight_number}</p>
-              <span>{duration(selectedFly[0].arrival_time,  selectedFly[0].departure_time  )}</span>
-              <span style={{ display: "block" }}>{formatTime(selectedFly[0].departure_time)} -  {formatTime(selectedFly[0].arrival_time)}</span>
-              <p>{selectedFly[0].stop_amount  ? stopDuration(selectedFly[0].stop_duration) +  " in " +  selectedFly[0].stop_place  : ""}</p>
+              <span>
+                {duration(
+                  selectedFly[0].arrival_time,
+                  selectedFly[0].departure_time
+                )}
+              </span>
+              <span style={{ display: "block" }}>
+                {formatTime(selectedFly[0].departure_time)} -{" "}
+                {formatTime(selectedFly[0].arrival_time)}
+              </span>
+              <p>
+                {selectedFly[0].stop_amount
+                  ? stopDuration(selectedFly[0].stop_duration) +
+                    " in " +
+                    selectedFly[0].stop_place
+                  : ""}
+              </p>
             </div>
             <div className="selectedPrices">
               <p>
